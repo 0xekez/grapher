@@ -25,5 +25,5 @@ jobs:
         env:
           LIGHTSAIL_KEY: ${{ secrets.LIGHTSAIL_KEY }}
         run: |
-          echo "$LIGHTSAIL_KEY" | tr -d '\r' | ssh-add - > /dev/null
-          ssh -o StrictHostKeyChecking=no admin@54.213.145.12 "cd grapher; git pull; sudo systemctl restart grapher.service"
+          echo "$LIGHTSAIL_KEY" > LightsailDefaultKey-us-west-2.pem
+          ssh -o StrictHostKeyChecking=no -i LightsailDefaultKey-us-west-2.pem admin@54.213.145.12 "cd grapher; git pull; sudo systemctl restart grapher.service"
