@@ -11,4 +11,4 @@
 
 (deftest test-get-response
   (testing "getting a response"
-    (is (= "that seems wrong" (get-response {:uri "hello"})))))
+    (is (= '("something about this request seems off" 404) (get-response {:uri "hello"})))))

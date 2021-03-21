@@ -17,7 +17,7 @@
   (with-open [wrtr (io/writer (get-target-file name value) :append true :create true)]
     (.write wrtr (str value "\n"))))
 
-(defn make-reponse [body]
+(defn make-reponse [body status]
   {:status 200
    :headers {"Content-Type" "text/plain"}
    :body body})
@@ -28,18 +28,12 @@
         (cond
           (= (count name-and-val) 2) (do
                                        (apply write-name-and-value name-and-val)
-                                       "success!")
-          :else "that seems wrong")))
+                                       '("success!" 200))
+          :else '("something about this request seems off" 404))))
 
 (defn handler [request]
-  (make-reponse (get-response request)))
+  (apply make-reponse (get-response request)))
 
 (defn -main []
   (ring/run-jetty handler {:port  3000
                            :join? false}))
-
-;; hello 2
-
-;; append 2 to data/hello
-
-;; hello_there -> hello there
