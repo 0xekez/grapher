@@ -29,6 +29,7 @@
           (= (count name-and-val) 2) (do
                                        (apply write-name-and-value name-and-val)
                                        '("success!" 200))
+          (.contains ["/" "/index.html"] uri) '("grapher homepage" 200)
           :else '("something about this request seems off" 404))))
 
 (defn handler [request]
