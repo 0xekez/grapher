@@ -26,5 +26,5 @@ jobs:
           LIGHTSAIL_KEY: ${{ secrets.LIGHTSAIL_KEY }}
         run: |
           echo $LIGHTSAIL_KEY > LightsailDefaultKey-us-west-2.pem
-          sudo chmod 600 LightsailDefaultKey-us-west-2.pem
+          chmod 600 LightsailDefaultKey-us-west-2.pem
           ssh -o StrictHostKeyChecking=no -i LightsailDefaultKey-us-west-2.pem admin@54.213.145.12 "cd grapher; git pull; sudo systemctl restart grapher.service"
