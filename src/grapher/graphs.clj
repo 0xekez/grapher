@@ -12,11 +12,15 @@
    [:script {:src "https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"}]])
 
 (defn to-js-array [data]
+  "Converts a clojure vec DATA into a javascript list literal's string
+  representation."
   (let [v (into [] data)
         joined (clojure.string/join ", " v)]
     (str "[" joined "]")))
 
 (defn make-line-chart [name data]
+  "Makes the javascript and html for graph with name NAME and data
+  DATA."
   [:div {:class "graph" :id (format "graph_%s" name)}
    [:canvas {:id name :width "100%" :height "100px"}]
    [:script (let [seq (range 1 (+ 1 (count data)))
@@ -46,6 +50,7 @@ new Chart(document.getElementById('%s').getContext('2d'), {
 " name jslabels name jsdata name))]])
 
 (defn make-homepage []
+  "Returns a string containing the html for the grapher homepage."
   (let [data (collector/get-data-map)]
     (html
      header
