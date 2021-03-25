@@ -52,12 +52,12 @@
     :else (let [response (handle-update request)
                 status (second response)
                 body (first response)]
-            (util/content-type (cond status
-                                     (= status 200) (util/response body)
-                                     (= status 400) (util/bad-request body)
-                                     :else {:status status
-                                            :headers []
-                                            :body body}) "text/html"))))
+            (util/content-type (cond
+                                 (= status 200) (util/response body)
+                                 (= status 400) (util/bad-request body)
+                                 :else {:status status
+                                        :headers []
+                                        :body body}) "text/html"))))
 (def app
   (->
    handler
