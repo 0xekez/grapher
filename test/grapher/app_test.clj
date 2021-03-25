@@ -16,8 +16,3 @@
 (deftest test-get-response
   (testing "getting a response"
     (is (= '("something about this request seems off" 400) (handle-update {:uri "hello"})))))
-
-(deftest test-write-read
-  (testing "write and read"
-    (write-name-and-value "test" 20)
-    (is (contains? (collect-files "data") "test"))))
