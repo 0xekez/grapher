@@ -1,8 +1,19 @@
-html {
-    max-width: 450px;
+body {
+    max-width: 900px;
     margin: auto;
     margin-top: 20px;
     line-height: 1.25;
+    font-family: sans-serif;
+}
+
+header {
+    text-align: center;
+}
+
+main {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
 }
 
 h1 {

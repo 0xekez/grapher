@@ -22,11 +22,13 @@
   "Makes the javascript and html for graph with name NAME and data
   DATA."
   [:div {:class "graph" :id (format "graph_%s" name)}
-   [:canvas {:id name :width "100%" :height "100px"}]
+   [:canvas {:id name :width "400px" :height "400px"}]
    [:script (let [seq (range 1 (+ 1 (count data)))
                   jslabels (to-js-array seq)
                   jsdata (to-js-array data)]
               (format "
+Chart.defaults.global.defaultFontColor = 'rgb(0,0,0)'
+Chart.defaults.global.defaultFontFamily = 'sans-serif'
 new Chart(document.getElementById('%s').getContext('2d'), {
   type: 'line',
   data: {
@@ -55,5 +57,8 @@ new Chart(document.getElementById('%s').getContext('2d'), {
     (html
      header
      [:body
-      [:h1 "grapher"]
-      (for [[n d] data] (make-line-chart n d))])))
+      [:header
+       [:h1 "grapher"]
+       [:h3 "to add a new data point visit negativefour.com/graph/value"]]
+      [:main
+       (for [[n d] data] (make-line-chart n d))]])))
